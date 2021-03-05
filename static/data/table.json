@@ -1,0 +1,39 @@
+{
+  "header": [
+    {
+      "name": "id",
+      "title": "ID",
+      "size": 50,
+      "sortable": true,
+      "sortDir": "asc",
+      "format": "number"
+    },
+    {
+      "name": "name",
+      "title": "Name",
+      "sortable": true
+    },
+    {
+      "name": "start",
+      "title": "Start",
+      "sortable": true,
+      "size": 150,
+      "format": "date",
+      "formatMask": "dd-mm-yyyy"
+    },
+    {
+      "name": "age",
+      "title": "Age",
+      "sortable": true,
+      "size": 80
+    }
+  ],
+  "data": [
+    [
+      1,
+      "Alan Daniel Matzumiya Zazueta",
+      "14-09-1992",
+      28
+    ]
+  ]
+}

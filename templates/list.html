@@ -1,0 +1,138 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row m-3">
+ <div class="cell-md-4 text-center text-left-md">
+  <h3 class="dashboard-section-title">
+   List
+   <small>
+    ui elements
+   </small>
+  </h3>
+ </div>
+ <div class="cell-md-8 d-flex flex-justify-center flex-justify-end-md">
+  <ul class="breadcrumbs bg-transparent">
+   <li class="page-item">
+    <a class="page-link" href="#">
+     <span class="mif-meter">
+     </span>
+    </a>
+   </li>
+   <li class="page-item">
+    <a class="page-link" href="#">
+     UI Elements
+    </a>
+   </li>
+   <li class="page-item">
+    <a class="page-link" href="#">
+     List
+    </a>
+   </li>
+  </ul>
+ </div>
+</div>
+<div class="m-3">
+ <div class="">
+  <div class="bg-white p-6 text-center">
+   Saponis Inc
+   <p class="text-leader2">
+    Jabones elaborados de manera artesanal por saponificación con ingredientes naturales beneficiosos para una piel sana.
+   </p>
+   <p>
+    Saponis
+    <a href="https://circuitalminds.github.io/">
+     official docs
+    </a>
+   </p>
+  </div>
+ </div>
+</div>
+<div class="p-1 m-3">
+ <div class="bg-white p-4">
+  <div class="example">
+   <p class="text-center h3 text-light">
+    Sort by
+   </p>
+   <div class="d-flex flex-justify-center flex-wrap m-2">
+    <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-price','asc',true)">
+     Price
+     <span class="mif-arrow-up">
+     </span>
+    </button>
+    <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-price','desc',true)">
+     Price
+     <span class="mif-arrow-down">
+     </span>
+    </button>
+    <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-author','asc',true)">
+     Author
+     <span class="mif-arrow-up">
+     </span>
+    </button>
+    <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-author','desc',true)">
+     Author
+     <span class="mif-arrow-down">
+     </span>
+    </button>
+    <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-name','asc',true)">
+     Name
+     <span class="mif-arrow-up">
+     </span>
+    </button>
+    <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-name','desc',true)">
+     Name
+     <span class="mif-arrow-down">
+     </span>
+    </button>
+    <div class="w-100 row flex-justify-center">
+     <div class="cell-md-4 mt-4">
+      <select data-filter="false" data-on-change="$('#paintings').data('list').filter(this.value)" data-prepend="Paints By:" data-role="select">
+       <option selected="" value="">
+        All
+       </option>
+
+       {% for key in saponis_img.keys() %}
+       <option value="{{ key }}">
+        {{ key }}
+       </option>
+       {% endfor %}
+      </select>
+     </div>
+    </div>
+   </div>
+   <ul data-cls-list="unstyled-list row flex-justify-center mt-4" data-cls-list-item="cell-sm-6 cell-md-4" data-filter-class="painting-author" data-role="list" data-sort-class="painting-price" data-sort-dir="desc" id="paintings">
+
+    {% for key in saponis_img.keys() %}
+    <li>
+     <figure class="text-center">
+      <div class="img-container thumbnail">
+       <img alt="{{ key }}, When is the wedding" src="{{ saponis_img[key] }}"/>
+      </div>
+      <figcaption class="painting-name">
+       Belleza, cosmética y cuidado personal
+      </figcaption>
+      <figcaption class="painting-author text-bold">
+       {{ key }}
+      </figcaption>
+      <figcaption class="painting-price" data-format="money">
+       $ 1,000
+      </figcaption>
+      <figcaption>
+       <div class="card-footer fb-like"
+          data-href="https://www.facebook.com/CircuitalMinds/"
+          data-width=""
+          data-layout="button_count"
+          data-action="like"
+          data-size="large"
+          data-share="true">
+        </div>
+      </figcaption>
+     </figure>
+    </li>
+    {% endfor %}
+
+   </ul>
+  </div>
+ </div>
+</div>
+{% endblock %}

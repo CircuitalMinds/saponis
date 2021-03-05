@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" class=" scrollbar-type-1 sb-cyan">
+{% include index_parts['head'] %}
+<body class="m4-cloak h-vh-100 bg-dark fg-teal">
+	<div class="navview-content h-100">
+        {% include index_parts['navbar'] %}
+		<div id="content-wrapper" class="content-inner h-100 bg-dark fg-teal" style="overflow-y: auto">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</div>
+{% include index_parts['javascripts'] %}
+</body>
+</html>

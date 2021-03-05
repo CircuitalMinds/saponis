@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+
+{% block content %}
+  <script>
+   var customButtons = [
+            {
+                html: "<span class='mif-search mif-2x'>",
+                onclick: function(){
+                    $(this.form).submit()
+                }
+            }
+        ];
+  </script>
+  <title>
+   Pandora :: 500 Server error
+  </title>
+  <div class="container text-center">
+   <div class="display4 fg-red mt-0">
+    500
+   </div>
+   <div class="h1 text-center m-8">
+    Oops!
+    <br/>
+    Something went wrong.
+   </div>
+   <div class="text-leader2 text-center page-error-box mx-auto">
+    We will work on fixing that right away.
+    <br/>
+    Meanwhile, you may
+    <a href="{{ routes['fractal_metric'] }}">
+     return to dashboard
+    </a>
+    or try using the search form.
+   </div>
+   <form action="javascript:" class="p-4 mx-auto page-error-box">
+    <input class="input-large" data-custom-buttons="customButtons" data-role="input" placeholder="Search..." type="text"/>
+   </form>
+  </div>
+{% endblock %}

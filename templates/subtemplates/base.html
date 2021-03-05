@@ -1,0 +1,422 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row m-2">
+
+    <div class="cell order-1 bg-dark bd-light">
+        <h3 class="cell card-header" id='play-song'>{{playlist[play_song]['name']}}</h3>
+        <div class="cell card">
+        <br>
+        <div class="cell card-content">
+        <video class="light fg-cyan" id="play-media"
+            data-aspect-ratio="hd" data-role="video-player"
+            data-loop-icon="<span class='mif-loop2 fg-cyan'></span>"
+            data-mute-icon="<span class='mif-volume-mute2 fg-cyan'></span>"
+            data-volume-low-icon="<span class='mif-volume-low fg-cyan'></span>"
+            data-volume-medium-icon="<span class='mif-volume-medium fg-cyan'></span>"
+            data-volume-high-icon="<span class='mif-volume-high fg-cyan'></span>"
+            data-play-icon="<img src={{ libs['fractal-img'] + '/play-icon.png' }}>"
+            data-stop-icon="<img src={{ libs['fractal-img'] + '/player_stop.png' }}>"
+            data-src="{{playlist[play_song]['url']}}" data-volume="1" data-on-end="endSong();">
+        </video>
+        </div>
+        </div>
+    </div>
+
+    <div class="cell order-2">
+        <div class="cell card">
+        <div data-role="panel" data-title-caption="Video PlayList"
+             data-collapsible="true" data-title-icon="<span class='mif-table'></span>"
+             class="cell bg-white fg-teal">
+            <table class="table table-no-border row-hover bg-light fg-teal mt-4"
+                    data-role="table" data-cls-table-top="row" data-cls-search="cell"
+                    data-cls-rows-count="cell" data-rows="5" data-rows-steps="5, 10"
+                    data-show-activity="false" data-horizontal-scroll="true">
+                <thead>
+                    <tr><th class="p-2 fg-teal">Video Title</th></tr>
+                </thead>
+                <tbody>{% for id in song_id %}
+                    <tr><td><button style="border: 1px solid dark; margin: 0; width: 100%; height: 100%;"
+                                    class="button fg-teal"
+                                    onclick='songFromList(value);'
+                                    value={{id}}>{{playlist[id]['name']}}</button>
+                    </td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row m-2">
+
+    <div class="cell order-1">
+        <h3 id="play-song-mp3" class="cell card-header">Ska-p - 0,7</h3>
+        <div class="cell card">
+            <div class="cell card-header">
+                <h3>Reproductor MP3</h3>
+            </div>
+            <br>
+            <div class="cell card-content">
+                <audio id="play-audio"
+                       data-role="audio-player"
+                       data-loop-icon="<span class='mif-loop2 fg-cyan'></span>"
+                       data-mute-icon="<span class='mif-volume-mute2 fg-cyan'></span>"
+                       data-volume-low-icon="<span class='mif-volume-low fg-cyan'></span>"
+                       data-volume-medium-icon="<span class='mif-volume-medium fg-cyan'></span>"
+                       data-volume-high-icon="<span class='mif-volume-high fg-cyan'></span>"
+                       data-play-icon="<img src={{ libs['fractal-img'] + '/play-icon.png' }}>"
+                       data-stop-icon="<img src={{ libs['fractal-img'] + '/player_stop.png' }}>"
+                       data-src="https://github.com/alanmatzumiya/containers_2/raw/music_1/part_1/04%200%2C7.MP3"
+                       class="light">
+                </audio>
+            </div>
+        </div>
+    </div>
+
+    <div class="cell order-2">
+        <div class="cell card">
+        <div data-role="panel" data-title-caption="Audio PlayList"
+             data-collapsible="true" data-title-icon="<span class='mif-table'></span>"
+             class="cell bg-white fg-teal">
+            <table class="table table-no-border row-hover bg-light fg-teal mt-4"
+                    data-role="table" data-cls-table-top="row" data-cls-search="cell"
+                    data-cls-rows-count="cell" data-rows="1" data-rows-steps="1,5"
+                    data-show-activity="false" data-horizontal-scroll="true">
+                <thead>
+                    <tr><th class="p-2 fg-teal">Song Title</th></tr>
+                </thead>
+                <tbody>{% for id in song_id[0:5] %}
+                    <tr><td><button style="border: 1px solid dark; margin: 0; width: 100%; height: 100%;"
+                                    class="button fg-teal"
+                                    onclick='songFromList(value);'
+                                    value={{id}}>{{playlist[id]['name']}}</button>
+                    </td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row m-2">
+
+        <div class="cell">
+        <div class="card">
+            <div class="cell card-header p-2">
+                <h3 id="play-song-mp3">YouTube Search</h3>
+            </div>
+            <br>
+            <div class="cell card-content row m-1">
+                    <input id="yt-search" type="text" class="w-75">
+                    <button onClick="youtubeSearch(document.getElementById('yt-search').value);"
+                            class="button w-25 border bd-gray fg-teal fg-light-hover bg-light bg-teal-hover">Search
+                    </button>
+            </div>
+        <div class="cell card-content text-center">
+            <ul class="group-list">
+                <li>
+                <ul class="group-list horizontal">
+                    <li><strong>Title</strong></li>
+                    <li><strong>Link</strong></li>
+                    <li><strong>Download</strong></li>
+                </ul>
+                </li>
+            </ul>
+            <ul id="search-list" class="group-list"></ul>
+        </div>
+        </div>
+        </div>
+
+</div>
+
+<div class="row m-2">
+
+    <div class="cell order-1">
+        <div data-role="panel"
+            data-title-caption="Members"
+            data-collapsible="true"
+            data-title-icon="<span class='mif-users'></span>"
+            class="cell card bg-light fg-teal">
+            <ul class="cell card-content user-list ">
+            <li>
+                <img src="https://avatars.githubusercontent.com/u/25187397?s=460&u=7c5cc8d7030f8d04105f7936c329030b0c3cc768&v=4"
+                     class="avatar">
+                <div class="text-ellipsis">Alan Matzumiya</div>
+                <div class="text-small text-muted">Admin</div>
+            </li>
+            </ul>
+            <div class="cell card-footer p-2 border-top bd-default text-center">
+                <a href="#">View all users</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% for posts in [blog.posts[0: 2], blog.posts[2: 4]] %}
+<div class="row m-2">
+    {% for j in [0, 1] %}
+    <div class="cell order-'{{j+1}}'">
+        <div class="card fg-teal">
+        <div class="card-header">
+            <div class="avatar">
+                <img src="{{ libs['fractal-img'] + '/Jungle3.png' }}">
+            </div>
+            <div class="name"><a href="{{ routes['base'] + 'blog' }}" class="fg-teal">CircuitalMinds</a></div>
+            <div class="date">{{ posts[j].date }}</div>
+        </div>
+        <div class="card-content p-2">
+           {{ posts[j].title }}
+        </div>
+        <div class="card-content">
+            <img src="{{posts[j].pic}}" style="width: 100%">
+        </div>
+        <div class="card-content p-2">
+            {{ posts[j].text }}
+        </div>
+        <div class="card-footer fb-like"
+          data-href="https://www.facebook.com/CircuitalMinds/"
+          data-width=""
+          data-layout="button_count"
+          data-action="like"
+          data-size="large"
+          data-share="true">
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
+
+
+<div class="row m-2">
+
+    <div class="cell">
+    <div data-role="panel"
+         data-title-caption="Dashboard: COVID-19"
+         data-collapsible="true"
+         data-title-icon="<span class='mif-chart-line'></span>"
+         class="cell card bg-dark fg-teal">
+        <div class="row card-content">
+            <div class="cell-md-8 p-10">
+                <h5 class="text-center">Report Day: {{ covid_data['lastUpdate'] }}</h5>
+                <canvas id="dashboardCovid"></canvas>
+            </div>
+            <div class="cell-md-4 p-10">
+                <h5 class="text-center">Summary</h5>
+                <div class="mt-6">
+                    <div class="clear">
+                        <div class="place-left">Recovered / Confirmed</div>
+                        <div class="place-right">
+                        <strong>
+                            {{ '{:0.2f}'.format(
+                            100 * covid_data['recovered'] / covid_data['confirmed']) + ' %'}}
+                        </strong>
+                        </div>
+                    </div>
+                    <div data-role="progress"
+                         data-value={{100*covid_data['recovered']/covid_data['confirmed']}}
+                         data-cls-bar="bg-cyan"></div>
+                </div>
+                <div class="mt-6">
+                    <div class="clear">
+                        <div class="place-left">Deaths / Recovered</div>
+                        <div class="place-right">
+                        <strong>
+                            {{ '{:0.2f}'.format(
+                            100 * covid_data['deaths'] / covid_data['recovered']) + ' %' }}
+                        </strong>
+                        </div>
+                    </div>
+                    <div data-role="progress"
+                         data-value={{100*covid_data['deaths']/covid_data['recovered']}}
+                         data-cls-bar="bg-red">
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <p class="text-small">Source: {{ covid_data['source'] }}</p>
+                </div>
+                <div class="mt-6">
+                <select id="countries" onchange="covid_data(this.value);" data-role="select">
+                    <option value="Mexico" selected="selected"></option>
+                {% for country in covid_data['countries'] %}
+                    <option value="{{ country }}">{{ country }}</option>
+                {% endfor %}
+                </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<script>
+var indexSong = {{play_song}};
+var currentSong = document.getElementById('play-song');
+var playMedia = document.getElementById('play-media');
+var searchList = document.getElementById("search-list");
+
+function endSong() {
+    indexSong = parseInt(indexSong) + 1;
+    getSong( indexSong );
+};
+
+function songFromList(id) {
+    indexSong = parseInt(id);
+    getSong( indexSong );
+};
+
+function getSong(song_id) {
+    var getData = $.get("/music/play", {"song_id": song_id});
+    getData.done( function( data ) {
+       playMedia.setAttribute("src", data['url']);
+       currentSong.innerHTML = data['name'];
+       playMedia.play();
+    });
+};
+
+function youtubeSearch(search) {
+    var searchData = $.get("/youtube/search/" + search);
+    searchData.done( function( data ) {
+       var dataList = data['search'];
+       var lenData = dataList.length;
+       searchList.innerHTML = "";
+
+       for (var j = 0; j < lenData; j++) {
+           row = document.createElement("li");
+           rowContent = document.createElement("ul");
+           rowContent.setAttribute("class", "group-list horizontal");
+
+           element1 = document.createElement("li");
+           element1.textContent= dataList[j]['video_title'];
+           rowContent.appendChild(element1);
+
+           element2 = document.createElement("li");
+           url = document.createElement("a");
+           url.setAttribute("class", "fg-teal")
+           url.setAttribute("href", dataList[j]["video_url"]);
+           url.textContent = dataList[j]["video_url"];
+           element2.appendChild(url);
+           rowContent.appendChild(element2);
+
+           element3 = document.createElement("li");
+           element3.textContent = "Get Song";
+           element3.setAttribute("class", "button fg-teal fg-light-hover bg-light bg-teal-hover");
+           element3.setAttribute("onClick", "youtubeDownloader('" + dataList[j]['video_url'] + "')");
+           rowContent.appendChild(element3);
+
+           row.appendChild(rowContent);
+           searchList.appendChild(row);
+       }
+
+    });
+};
+
+function youtubeDownloader(url) {
+    var urlData = $.get("/check_data/select", {"url": url});
+};
+</script>
+<script>
+$(function () {
+    recovered = '{{ covid_mexico['recovered'] }}';
+    confirmed = '{{ covid_mexico['confirmed'] }}';
+    deaths = '{{ covid_mexico['deaths'] }}';
+    dash(deaths, confirmed, recovered);
+})
+
+function covid_data( country ) {
+    var getCovid = $.get("/covid/" + country);
+    getCovid.done( function (data) {
+      dash(data['deaths'], data['confirmed'], data['recovered']);
+  });
+};
+
+function dash( deaths, confirmed, recovered ) {
+    window.chartColors = {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)',
+        blue: 'rgb(54, 162, 235)',
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(201, 203, 207)'
+    };
+
+    var dashboardCovid = document.getElementById("dashboardCovid");
+    new Chart(dashboardCovid.getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ["deaths", "confirmed", "recovered"],
+            datasets: [{
+                label: '# of cases',
+                data: [deaths, confirmed, recovered],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    })
+};
+</script>
+<script>
+$( function () {
+    var Criba = document.getElementById("criba");
+    var ctxCriba = Criba.getContext("2d");
+    var primo = 1;
+    var nT = 10;
+    var contPn = 0;
+    var pin = 1.0;
+    var sn = Criba.width / 10;
+    Criba.height = sn * nT
+    var grdA = ctxCriba.createLinearGradient(300, 0, 0, 100);
+    ctxCriba.beginPath();
+    grdA.addColorStop(0.1, "sienna");
+    grdA.addColorStop(0.3, "crimson");
+    grdA.addColorStop(0.6, "indianred");
+    grdA.addColorStop(1, "royalblue");
+    // Draw the initial triangle (black)
+    ctxCriba.strokeStyle = grdA;
+    ctxCriba.stroke();
+    ctxCriba.font = "15px Arial";
+    for (var i = 0; i < nT; i += 1) {
+        for (var j = 0; j < 10; j += 1) {
+            ctxCriba.rect(j * sn, i * sn, sn, sn);
+            if (primo == 2 || primo == 3 || primo == 5 || primo == 7) {
+                contPn += 1;
+                pin *= 1 / (1 - 1 / (primo ** 2));
+                ctxCriba.strokeText(primo, j * sn + sn / 4, i * sn + 3 * sn / 4);
+            } else if (primo > 1 && primo % 2 !== 0 && primo % 3 !== 0 && primo % 5 !== 0 && primo % 7 !== 0) {
+                contPn += 1;
+                pin *= 1 / (1 - 1 / (primo ** 2));
+                ctxCriba.strokeText(primo, j * sn + sn / 4, i * sn + 3 * sn / 4);
+            }
+            primo += 1;
+        }
+    }
+    ctxCriba.strokeStyle = grdA;
+    ctxCriba.stroke();
+
+});
+</script>
+{% endblock %}

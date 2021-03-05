@@ -1,0 +1,84 @@
+<ul class="navview-menu mt-4" id="side-menu">
+    <li class="item-header">MAIN NAVIGATION</li>
+    <li>
+        <a href="{{ routes['base'] }}">
+            <span class="icon"><span class="mif-meter"></span></span>
+            <span class="caption">Home</span>
+        </a>
+    </li>
+
+    <li>
+        <a href="#" class="dropdown-toggle">
+            <span class="icon"><span class=mif-widgets"></span></span>
+            <span class="caption">Websites</span>
+        </a>
+        <ul class="navview-menu stay-open" data-role="dropdown" >
+            <li class="item-header">Websites</li>
+            <li><a href="{{ routes['base'] + 'blog' }}">
+                <span class="icon"><span class="mif-widgets"></span></span>
+                <span class="caption">Blog</span>
+            </a></li>
+            <li><a href="{{ routes['base'] + 'pyfullstack' }}">
+                <span class="icon"><span class="mif-widgets"></span></span>
+                <span class="caption">pyFullStack</span>
+            </a></li>
+            <li><a href="{{ routes['base'] + 'portfolio' }}">
+                <span class="icon"><span class="mif-widgets"></span></span>
+                <span class="caption">Portfolio</span>
+            </a></li>
+            <li><a href="{{ routes['base'] + 'desktop' }}">
+                <span class="icon"><span class="mif-widgets"></span></span>
+                <span class="caption">Desktop View</span>
+            </a></li>
+        </ul>
+    </li>
+
+        <li>
+        <a href="#" class="dropdown-toggle">
+            <span class="icon"><span class="mif-envelop"></span></span>
+            <span class="caption">Mailbox</span>
+            <span class="badges ml-auto mr-3">
+                <span class="badge inline bg-teal fg-white">17</span>
+                <span class="badge inline bg-teal fg-white">7</span>
+                <span class="badge inline bg-teal fg-white">4</span>
+                <span class="badge inline bg-teal fg-white">3</span>
+            </span>
+        </a>
+        <ul class="navview-menu stay-open" data-role="dropdown" >
+            <li class="item-header">Mailbox</li>
+            <li>
+                <a href="{{ routes['base'] + subroutes['inbox'].replace('/', '') }}">
+                    <span class="icon"><span class="mif-mail"></span></span>
+                    <span class="caption">Inbox</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li>
+        <a href="{{ routes['base'] + subroutes['chat'].replace('/', '') }}">
+            <span class="icon"><span class="mif-bubbles"></span></span>
+            <span class="caption">Chat</span>
+            <span class="badges ml-auto mr-3">
+                <span class="badge inline bg-teal fg-white">7</span>
+                <span class="badge inline bg-teal fg-white">4</span>
+                <span class="badge inline bg-teal fg-white">3</span>
+            </span>
+        </a>
+    </li>
+
+
+    <li class="item-header">Documentation</li>
+
+    <li>
+        <a href="https://github.com/CircuitalMinds/">
+            <span class="icon"><img src="{{ libs['fractal-img'] + '/Jungle3.png' }}" class="avatar"></span>
+            <span class="caption">CircuitalMinds</span>
+        </a>
+    </li>
+    <li><canvas id="criba" style='display: inline-block; max-width: 100%; max-height: 100%;'>
+        </canvas>
+    </li>
+</ul>
+
+
