@@ -2,7 +2,7 @@ import os
 
 
 SERVER_SETTING = {
-    "path_config": "./saponis/_config.yml",
+    "path_config": "./saponis_server/_config.yml",
     "local": {
         "HOST": "127.0.0.1", "PORT": 8000, "DEBUG": True},
     "deploy": {

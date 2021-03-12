@@ -1,6 +1,5 @@
-from flask import redirect, render_template
+from flask import render_template
 from .config import Settings
-import requests
 
 
 class Server(Settings):
@@ -10,18 +9,11 @@ class Server(Settings):
 
     def __init__(self, app):
         super(Server, self).__init__()
-        # blog posts by CircuitalMinds
-        requests.get("https://circuitaldb.herokuapp.com/api/message?name=circuitalminds&email=circuitalminds@gmail.com&category=2&message=Hello!+Alan")
-        self.messages = requests.get("https://circuitaldb.herokuapp.com/api/query?book=messages").json()
         # app instance
         self.app = app
-        self.app.config["data"] = {"searches": {}}
-        self.app.config["data"]["select"] = []
 
     def base(self, path):
-        if path in list(self.websites.keys()):
-            return redirect(self.websites[path])
-        elif path in list(self.templates.keys()):
+        if path in list(self.templates.keys()):
             return self.add_subpath(path)
         else:
             return self.error404(404)
@@ -54,14 +46,8 @@ class Server(Settings):
             index_parts=self.index_builder,
             libs=self.back(self.libs),
             routes=self.routes,
-            subroutes=self.templates,
-            messages=self.messages
+            subroutes=self.templates
         )
-        
-    def get_song(self, song_id):
-        if not self.playlist:
-            self.playlist = self.get_music()
-        return self.playlist[int(song_id)]
 
     @staticmethod
     def back(lib):
