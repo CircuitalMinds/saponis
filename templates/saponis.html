@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" class=" scrollbar-type-1 sb-cyan">
+<!-- HEAD -->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" /><link rel="canonical" href="https://saponis.herokuapp.com/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="selene guzman">
+    <meta name='description' content="jabon.saponis">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Saponis | Jabon" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://scontent.fhmo2-1.fna.fbcdn.net/v/t1.6435-9/160580784_894305124737877_26162235309674963_n.png?_nc_cat=101&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=7ksU9iGgVcsAX_pZs5w&_nc_ht=scontent.fhmo2-1.fna&oh=e5747e801cfcc9305d4a2923abe67108&oe=609279FD" />
+    <meta property="og:url" content="https://saponis.herokuapp.com/" />
+    <meta property="og:site_name" content="Saponis | Jabon" />
+    <meta property="og:description" content="Jabones Naturales" />
+    <meta property="fb:app_id" content="772020893629559"/>
+    <!-- Metro 4 -->
+    <link rel="stylesheet" href="../static/vendors/metro4/css/metro-all.min.css">
+    <link rel="shortcut icon" href="../static/images/saponis/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../static/images/saponis/favicon.ico" type="image/x-icon">
+    <title>Saponis | Jabon</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"
+        integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+            integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+            crossorigin="anonymous">
+    </script>
+</head>
+<body class="m4-cloak h-vh-100 bg-dark fg-teal">
+	<div class="navview-content">
+        <!-- NAVBAR -->
+        <div data-role="appbar" class="pos-relative bg-darkTeal fg-white">
+        <div class="app-bar-container ml-auto">
+            <button value="Facebook" class="button app-bar-item bg-darkTeal bg-grayMouse-hover" onclick="animateData(value)">
+                <span class="mif-facebook mif-3x fg-white"></span>
+            </button>
+            <button value="Instagram" class="button app-bar-item bg-darkTeal bg-grayMouse-hover" onclick="animateData(value)">
+                <span class="mif-instagram mif-3x fg-white"></span>
+            </button>
+            <button value="WhatsApp" class="button app-bar-item bg-darkTeal bg-grayMouse-hover" onclick="animateData(value)">
+                <span class="mif-whatsapp mif-3x fg-white"></span>
+            </button>
+
+            <button class="app-bar-item bg-darkTeal w-100 bg-grayMouse-hover fg-teal">
+                <img width="40%" src="{{ config['images'] + '/logo.jpg' }}" class="avatar app-bar-item text-center">
+            </button>
+        </div>
+        </div>
+		<div id="content-wrapper" class="post-card content-inner h-100 w-100 fg-dark"
+
+			 style="overflow-y: auto;
+			 		background-image: url({{ config['images'] + '/banners/wall_2.jpeg' }});">
+
+
+            <!-- CONTENTS -->
+        <div class="row m-3">
+            <div class="cell-md-8">
+               <div class="cell-md-12 card-content bg-white text-center">
+               Saponis Inc
+               <p class="text-leader2">
+                    Jabones elaborados de manera artesanal por saponificación con ingredientes naturales beneficiosos para una piel sana.
+               </p>
+               <p>
+                    Saponis
+                <a href="https://circuitalminds.github.io/">
+                    official docs
+                </a>
+               </p>
+               </div>
+            <div class="row">
+                <div class="cell-md-6 mt-2 card-content">
+                <div data-role="carousel"
+                     data-auto-start="true"
+                     data-period="8000"
+                     data-bullet-style="circle"
+                     data-bullets-position="right">
+                {% for product in config['products'][0:5] %}
+                <div class="slide" data-cover="{{ product }}">
+                <div class="row fb-like p-2"
+                    data-href="https://www.facebook.com/Saponis-290817105086685"
+                    data-width=""
+                    data-layout="button_count"
+                    data-action="like"
+                    data-size="small"
+                    data-share="true">
+                </div>
+                </div>
+                {% endfor %}
+
+                </div>
+                </div>
+                <div class="cell-md-6 mt-2 card-content">
+                <div data-role="carousel"
+                     data-auto-start="true"
+                     data-period="8000"
+                     data-bullet-style="circle"
+                     data-bullets-position="right">
+                {% for product in config['products'][5:10] %}
+                <div class="slide" data-cover="{{ product }}">
+                <div class="row fb-like p-2"
+                    data-href="https://www.facebook.com/Saponis-290817105086685"
+                    data-width=""
+                    data-layout="button_count"
+                    data-action="like"
+                    data-size="small"
+                    data-share="true">
+                </div>
+                </div>
+                {% endfor %}
+
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <video id="playVideo"
+            	   class="cell-md-4 mt-2 light border bd-green"
+                   data-role="video-player"
+	           data-aspect-ratio="sd"
+	           data-loop-icon="<span class='mif-loop2 fg-cyan'></span>"
+		   data-mute-icon="<span class='mif-volume-mute2 fg-cyan'></span>"
+		   data-volume-low-icon="<span class='mif-volume-low fg-cyan'></span>"
+		   data-volume-medium-icon="<span class='mif-volume-medium fg-cyan'></span>"
+		   data-volume-high-icon="<span class='mif-volume-high fg-cyan'></span>"
+		   data-play-icon="<img src='../static/images/play-icon.png'>"
+	           data-stop-icon="<img src='../static/images/player_stop.png'>"></video>
+            <div class="cell-md-8">
+            <div class="row">
+                <div class="cell-md-6 mt-2 card-content">
+                <div data-role="carousel"
+                     data-auto-start="true"
+                     data-period="8000"
+                     data-bullet-style="circle"
+                     data-bullets-position="right">
+                {% for product in config['products'][10:15] %}
+                <div class="slide" data-cover="{{ product }}">
+                <div class="row fb-like p-2"
+                    data-href="https://www.facebook.com/Saponis-290817105086685"
+                    data-width=""
+                    data-layout="button_count"
+                    data-action="like"
+                    data-size="small"
+                    data-share="true">
+                </div>
+                </div>
+                {% endfor %}
+
+                </div>
+                </div>
+                <div class="cell-md-6 mt-2 card-content">
+                <div data-role="carousel"
+                     data-auto-start="true"
+                     data-period="8000"
+                     data-bullet-style="circle"
+                     data-bullets-position="right">
+                {% for product in config['products'][15:20] %}
+                <div class="slide" data-cover="{{ product }}">
+                <div class="row fb-like p-2"
+                    data-href="https://www.facebook.com/Saponis-290817105086685"
+                    data-width=""
+                    data-layout="button_count"
+                    data-action="like"
+                    data-size="small"
+                    data-share="true">
+                </div>
+                </div>
+                {% endfor %}
+                </div>
+                </div>
+                </div>
+                </div>
+            <div class="cell-md-4 mt-2 card-content" style="background-image: url({{ config['images'] + '/banners/wall.jpg' }});
+              background-repeat: no-repeat; background-position: top; height: 30%;">
+            </div>
+
+            <div class="row">
+            <img class="cell-md-2" src="{{ config['images'] + '/cat_1.gif' }}">
+            <img class="cell-md-2" src="{{ config['images'] + '/cat_2.gif' }}">
+            <img class="cell-md-2" src="{{ config['images'] + '/cat_3.gif' }}">
+            </div>
+    </div>
+    </div>
+		<div class="w-100 text-center text-small data-box p-2 border-top bd-grayMouse" style="position: relative; bottom: 0">
+    		<div>&copy; 2021 <a href="https://www.instagram.com/Saponis" class="text-muted fg-white-hover no-decor">Jabon.Saponis</a></div>
+		</div>
+	</div>
+
+    <!-- JAVASCRIPTS -->
+        <!-- jQuery first, then Metro UI JS -->
+    <script src="../static/vendors/jquery/jquery-3.4.1.min.js"></script>
+    <script src="../static/js/charts.js"></script>
+    <script src="../static/vendors/chartjs/Chart.bundle.min.js"></script>
+    <script src="../static/vendors/qrcode/qrcode.min.js"></script>
+    <script src="../static/vendors/jsbarcode/JsBarcode.all.min.js"></script>
+    <script src="../static/vendors/ckeditor/ckeditor.js"></script>
+    <script src="../static/vendors/metro4/js/metro.min.js"></script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+            src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v9.0"
+            nonce="TwCE2nF9">
+    </script>
+    <script>
+    var playVideo = document.getElementById("playVideo");
+    playVideo.setAttribute("data-src", "https://github.com/CircuitalMinds/music_container_6/blob/main/videos/Proceso%20de%20recolecci%C3%B3n%20y%20destilaci%C3%B3n%20de%20la%20lavanda%2C%20empresa%20Alcarria%20Flora-q6lAMCgxh9U.mp4?raw=true");
+    </script>
+    <script>
+    var socialNetworks = {"Facebook": '<a class="fg-teal" href="' + 'https://www.facebook.com/Saponis-290817105086685' + '">@Saponis</a>',
+                          "Instagram": '<a class="fg-teal" href="' + 'https://www.instagram.com/Saponis' + '">#Saponis</a>',
+                          "WhatsApp": '<p class="fg-teal">' + '+52 - 6621 - 558 - 4299' + '</p>'};
+
+    function animateData( value ){
+        Metro.dialog.create({
+            title: '<p class="fg-teal">' + value + '</p>',
+            content: '<div class="text-center">' + socialNetworks[value] + '</div>',
+            onShow: function(){
+                var el = $(this);
+                el.addClass("ani-swoopInTop");
+                setTimeout(function(){
+                    el.removeClass("ani-swoopInTop");
+                }, 500);
+            },
+            onHide: function(){
+                console.log("hide");
+                var el = $(this);
+                el.addClass("ani-swoopOutTop");
+                setTimeout(function(){
+                    //el.removeClass("ani-swoopOutTop");
+                }, 5000);
+            }
+        });
+    }
+    </script>
+
+
+
+</body>
+</html>

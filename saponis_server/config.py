@@ -1,10 +1,12 @@
 import os
 import yaml
 import requests
+
+
 Loader_Requests = lambda path: yaml.load(requests.get(path).content, Loader=yaml.FullLoader)
 Loader_YAML = lambda path: yaml.load(open(path), Loader=yaml.FullLoader)
-os.environ["FILES_STORAGE"] = "https://raw.githubusercontent.com/CircuitalMinds/FractalMetric/localhost"
-os.environ['PATH_DB'] = "/circuitalminds/databases/"
+os.environ["FILES_STORAGE"] = "/saponis_server/storage/"
+os.environ['PATH_DB'] = "./saponis_server/database/"
 local_config = "./saponis_server/_config.yml"
 
 
@@ -17,9 +19,10 @@ class Settings:
         self.host, self.port, self.debug = config["HOST"], config["PORT"], config["DEBUG"]
         self.routes, self.libs, self.templates, self.index_builder = self.config()
         self.path_index = "/list.html"
-        self.index_title = 'FractalMetric'
+        self.index_title = 'Saponis.Jabon'
         path_img = "static/images/saponis_img/"
         self.saponis_img = {img: "./" + path_img + img for img in os.listdir("./" + path_img)}
+        self.img_list = os.listdir("./" + path_img)
 
     @staticmethod
     def config():

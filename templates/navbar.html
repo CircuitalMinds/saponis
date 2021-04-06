@@ -1,18 +1,19 @@
-<div data-role="appbar" class="pos-absolute bg-darkTeal fg-white">
+<div data-role="appbar" class="pos-relative bg-darkTeal fg-white">
+
 	<a href="#" class="app-bar-item d-block d-none-lg" id="paneToggle"><span class="mif-menu"></span></a>
 	<div class="app-bar-container ml-auto">
-		<a href="#" class="app-bar-item">
-		    <span class="mif-envelop"></span>
-		    <span class="badge bg-green fg-white mt-2 mr-1">4</span>
-		</a>
-		<a href="#" class="app-bar-item">
-		    <span class="mif-bell"></span>
-		    <span class="badge bg-orange fg-white mt-2 mr-1">10</span>
-		</a>
-		<a href="#" class="app-bar-item">
-		    <span class="mif-flag"></span>
-		    <span class="badge bg-red fg-white mt-2 mr-1">9</span>
-		</a>
+		<button value="facebook" class="button app-bar-item bg-darkTeal" onclick="animateDemo(value)">
+		    <span class="mif-facebook mif-3x fg-white"></span>
+		</button>
+
+		<button value="instagram" class="button app-bar-item bg-darkTeal" onclick="animateDemo(value)">
+		    <span class="mif-instagram mif-3x fg-white"></span>
+		</button>
+
+		<button value="whatsapp" class="button app-bar-item bg-darkTeal" onclick="animateDemo(value)">
+		    <span class="mif-whatsapp mif-3x fg-white"></span>
+		</button>
+
 		<div class="app-bar-container">
 		    <a href="#" class="app-bar-item">
 		        <img src="{{ libs['fractal-img'] + '/logo.jpg' }}" class="avatar">
