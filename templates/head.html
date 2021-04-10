@@ -13,7 +13,7 @@
     <!-- Open Graph -->
     <meta property="og:title" content="Saponis | Jabonis" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="./static/images/logo.jpg" />
+    <meta property="og:image" content="{{ config_files['path'] '/images/logo.jpg' }}" />
     <meta property="og:url" content="https://saponis.herokuapp.com/" />
     <meta property="og:site_name" content="Saponis | Jabonis" />
     <meta property="og:description" content="Jabones Naturales" />
@@ -23,8 +23,8 @@
     <link rel="stylesheet" href="{{ libs['fractal-vendors'] + '/metro4/css/metro-all.min.css' }}">
     <link rel="stylesheet" href="{{ libs['fractal-css'] }}">
 
-    <link rel="shortcut icon" href="{{ libs['fractal-img'] + '/favicon.ico' }}" type="image/x-icon">
-    <link rel="icon" href="{{ libs['fractal-img'] + '/favicon.ico' }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ config_files['path'] + '/images/favicon.ico' }}" type="image/x-icon">
+    <link rel="icon" href="{{ config_files['path'] + '/images/favicon.ico' }}" type="image/x-icon">
 
     <title>Saponis | Jabonis</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"

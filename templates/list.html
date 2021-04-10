@@ -44,8 +44,8 @@
                 style="margin-right: 15%; margin-top: 2%; margin-left: 45%; margin-bottom: 15%;">
             <div class="row mr-2 ml-2 fg-light border-double border-size-2 bd-dark bg-light fg-teal w-100">
                <img class="cell m-2 border-solid border-size-1"
-                    width="100%" alt="{{ img_list[15] }}, When is the wedding"
-                    src="{{ libs['fractal-img'] + '/saponis_img/' + img_list[15] }}"/>
+                    width="100%" alt="{{ config_files['products'][15] }}, When is the wedding"
+                    src="{{  config_files['products'][15] }}"/>
                    <div class="cell m-2">
                    Belleza, <br> cosmética y <br> cuidado personal. <br> $ 1,000
                    </div>
@@ -73,7 +73,7 @@
      <div class="cell-md-4 mt-4">
       <select data-filter="false" data-prepend="Productos:" data-role="select">
 
-       {% for key in saponis_img.keys() %}
+       {% for key in config_files['products'].keys() %}
        <option value="{{ key }}">
         {{ key }}
        </option>
@@ -84,11 +84,11 @@
    </div>
    <ul data-cls-list="unstyled-list row flex-justify-center mt-4" data-cls-list-item="cell-sm-6 cell-md-4">
 
-    {% for key in saponis_img.keys() %}
+    {% for key in config_files['products'].keys() %}
     <li class="cell h-50">
      <figure class="text-center">
       <div class="img-container thumbnail p-4">
-       <img alt="{{ key }}, When is the wedding" src="{{ saponis_img[key] }}"/>
+       <img alt="{{ key }}, When is the wedding" src="{{ config_files['products'][key] }}"/>
       </div>
       <figcaption class="painting-name">
        Belleza, cosmética y cuidado personal
