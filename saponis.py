@@ -44,6 +44,8 @@ def upload_template():
 def home(path=None):
     if path == "storage":
         return redirect(url_for("storage_files"))    
+    elif path == "upload_file":
+        return storage_files()
     else:
         products_path = "./storage/products"
         config_files = {"path": "./storage", "products":
